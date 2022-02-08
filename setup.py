@@ -1,3 +1,4 @@
+from importlib.metadata import entry_points
 import setuptools
 
 with open("README.md", "r", encoding="utf-8") as fh:
@@ -22,4 +23,5 @@ setuptools.setup(
     ],
     package_dir={"nbox": "nbox"},
     python_requires=">=3.6",
+    entry_points={"console_scripts": ["nbox=nbox.__main__:main"]},
 )

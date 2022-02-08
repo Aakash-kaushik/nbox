@@ -13,19 +13,26 @@ The commands are broken down according to the products they are related to.
 """
 
 import fire
-from . import cli as n # nbox-cli
-from .jobs import cli as ij # jobx-cli
+from . import cli as n  # nbox-cli
+from .jobs import cli as ij  # jobx-cli
 from .jobs import Instance
 
+
+def main():
+    fire.Fire(
+        {
+            "deploy": n.deploy,  # nbox deploy
+            "instance": Instance,  # nbox jobs instance
+            "jobs": {
+                "new": ij.new_job,  # nbox jobs new PROJECT_NAME
+                "deploy": ij.deploy,  # nbox jobs deploy FOLDER
+            },
+            "status": Instance.print_status,  # nbox status
+            "tunnel": n.tunnel,
+            "open": n.open_home,
+        }
+    )
+
+
 if __name__ == "__main__":
-  fire.Fire({
-    "deploy": n.deploy,           # nbox deploy
-    "instance": Instance,         # nbox jobs instance
-    "jobs": {
-      "new": ij.new_job,          # nbox jobs new PROJECT_NAME
-      "deploy": ij.deploy,        # nbox jobs deploy FOLDER
-    },
-    "status": Instance.print_status, # nbox status
-    "tunnel": n.tunnel,
-    "open": n.open_home,
-  })
+    main()
